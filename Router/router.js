@@ -1,9 +1,11 @@
 import express from "express"
-import { insert, read } from "../Controller/crud.js"
+import { readData } from "../Controller/crud.js"
 
 const router = express.Router()
 
-router.get("/",read)
-router.post("/adduser",insert)
+router.get("/",readData)
+// router.post("/adduser",insert)
+// router.put("/updateUser/:email",update)
+// router.delete("/deleteUser/:email",deleteUser)
 
 export default router
