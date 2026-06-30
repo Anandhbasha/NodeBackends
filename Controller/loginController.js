@@ -41,3 +41,20 @@ export const loginUser = async(req,res)=>{
         res.status(405).json({message:"Login Error"})
     }
 }
+
+export const verifyToken = (req,res,next)=>{
+    try{
+        const auth = req.headers["authorization"]
+        if(!auth){
+            res.status(404).json({message:"No token Provided"})
+        }
+        else{
+            const token = auth.split(" ")[1];
+            const decode = jwt.verify(token,"abcdef")
+            req.user = decode
+            next()
+        }
+    }catch(err){
+        res.status(402).json({message:"Invaild token Provided"})
+    }
+}

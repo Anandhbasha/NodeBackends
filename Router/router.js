@@ -1,10 +1,10 @@
 import express from "express"
 import { deleteUser, insertData, readData, updateUser } from "../Controller/crud.js"
-import { loginUser, registerUser } from "../Controller/loginController.js"
+import { loginUser, registerUser, verifyToken } from "../Controller/loginController.js"
 
 const router = express.Router()
 
-router.get("/",readData)
+router.get("/",verifyToken, readData)
 router.post("/addUser",insertData)
 router.put("/modified/:email",updateUser)
 router.delete("/remove/:Mobile",deleteUser)
